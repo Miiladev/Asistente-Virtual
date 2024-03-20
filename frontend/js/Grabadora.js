@@ -26,8 +26,6 @@ async function Grabar() {
 
     recognition.onend = (event) => {
 
-        // Cuando GrabacionActivada esta en true es por que, el evento seguira escuchando 
-        // Cuando Asistida esta en false es por que, no detecto el nombre de la asistente
         if (GrabacionActivada == true && Asistida == true) {
             recognition.start();
             grabacion = true;
