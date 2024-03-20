@@ -1,0 +1,28 @@
+.Caja {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Caja {
+  margin-inline: auto;
+  width: 90vw;
+  height: 70vh;
+}
+
+.Caja {
+  background-image: url('../Imagenes/maestro.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 1rem;
+}
+
+.Caja {
+  border: 5px solid #111111;
+}
+
+.Caja-Cambio {
+  border: 5px solid rgb(255, 0, 0);
+}
