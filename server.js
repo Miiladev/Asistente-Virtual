@@ -1,11 +1,12 @@
-
+const datos = require("./config.json");
 const express = require('express');
 const path = require('node:path');
 
-const app = express();
-const PORT = 3001;
+const aplicacion = express();
+const puerto = 3000;
 
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'frontend')));
+aplicacion.use(express.json());
+aplicacion.use(express.static(path.join(__dirname, 'pagina')));
+aplicacion.get('/configurationes', (_, res) => { res.json({ datos }); });
 
-app.listen(PORT, () => { console.log(`Asistente en la pagina http://localhost:${PORT}`); });
+aplicacion.listen(puerto, () => { console.log(`Asistente en la pagina http://localhost:${puerto}`); });
