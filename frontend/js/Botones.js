@@ -1,19 +1,25 @@
-import { recognition, Grabar } from '../js/Grabadora.js';
+import { recognition, recognitionSegundaParte, Grabar } from '../js/Grabadora.js';
 
 const Desactivar = document.querySelector("#Desactivar-Voz");
 const Activar = document.querySelector("#Activar-Voz");
 const Caja = document.querySelector("#Caja");
 
-let GrabacionActivada = true;
+const DatosGuardados = localStorage.getItem("usuario");
+const DatosLocal = JSON.parse(DatosGuardados);
 
-Desactivar.onclick = async () => {
+const Datos = { Asistida: false, Asistente: "Miila", GrabacionActivada: false, ModoHora: false };
 
-    recognition.abort();
+Desactivar.onclick = () => {
 
-    if (GrabacionActivada == true) {
+    recognition.stop();
+    recognitionSegundaParte.stop();
+
+    if (DatosLocal.GrabacionActivada) {
 
         let CajaCambio = Caja.classList.contains("Caja-Cambio");
-        GrabacionActivada = false;
+
+        Datos.DatosLocal = false;
+        localStorage.setItem("usuario", JSON.stringify(Datos));
 
         CajaCambio ? Caja.classList.remove("Caja-Cambio") : " ";
 
@@ -25,15 +31,14 @@ Desactivar.onclick = async () => {
 
 Activar.onclick = async () => {
 
-    if (GrabacionActivada == false) {
+    if (!DatosLocal.GrabacionActivada) {
 
-        GrabacionActivada = true;
+        Datos.GrabacionActivada = true;
+
+        localStorage.setItem("usuario", JSON.stringify(Datos));
 
         Desactivar.classList.remove("Desactivado");
         Activar.classList.add("Desactivado");
         Grabar();
     }
 };
-
-export { GrabacionActivada };
-
